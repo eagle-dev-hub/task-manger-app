@@ -52,6 +52,7 @@ header p {
   display: flex;
   gap: 10px;
   margin-bottom: 1.2rem;
+  flex-wrap: wrap;
 }
 
 .stat-pill {
@@ -62,6 +63,7 @@ header p {
   text-align: center;
   font-size: 0.78rem;
   color: var(--muted);
+  min-width: 70px;
 }
 
 .stat-pill strong {
@@ -214,6 +216,50 @@ header p {
   border-color: var(--accent);
 }
 
+/* ── Search Bar ── */
+.search-bar {
+  margin-bottom: 1rem;
+}
+
+#search-input {
+  width: 100%;
+  padding: 10px 12px;
+  background: var(--surface);
+  border: 1px solid #2a2a4a;
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+#search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ── Bulk Actions ── */
+.bulk-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.bulk-btn {
+  flex: 1;
+  padding: 8px;
+  background: var(--surface);
+  border: 1px solid #2a2a4a;
+  border-radius: 8px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all var(--transition);
+}
+
+.bulk-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 /* ── Task cards ── */
 #tasks-list {
   display: flex;
@@ -235,12 +281,23 @@ header p {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-.task-card.done { opacity: 0.5; }
+.task-card.done { opacity: 0.6; }
 .task-card.done .task-title { text-decoration: line-through; }
 
 .task-card.priority-low  { border-left-color: #22c55e; }
 .task-card.priority-med  { border-left-color: #f59e0b; }
 .task-card.priority-high { border-left-color: var(--accent); }
+
+/* Overdue styling */
+.task-card.overdue {
+  background: rgba(233, 69, 96, 0.1);
+}
+.task-card.overdue .task-title {
+  color: #e94560;
+}
+.task-card.overdue .task-meta {
+  color: #e94560;
+}
 
 .task-header {
   display: flex;
@@ -255,7 +312,23 @@ header p {
   font-size: 0.78rem;
   color: var(--muted);
   margin-top: 4px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
 }
+
+.priority-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.task-card.priority-low .priority-badge { background: #22c55e20; color: #22c55e; }
+.task-card.priority-med .priority-badge { background: #f59e0b20; color: #f59e0b; }
+.task-card.priority-high .priority-badge { background: #e9456020; color: #e94560; }
 
 .task-desc {
   font-size: 0.88rem;
@@ -328,4 +401,80 @@ dialog p {
   color: #fff;
   cursor: pointer;
   font-weight: 600;
+}
+
+/* ── Undo Snackbar ── */
+.snackbar {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: var(--surface);
+  color: var(--text);
+  text-align: center;
+  border-radius: 8px;
+  padding: 12px;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  border: 1px solid var(--accent);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.snackbar.show {
+  visibility: visible;
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+#undo-delete {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 5px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#undo-delete:hover {
+  opacity: 0.9;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .stats {
+    gap: 6px;
+  }
+  .stat-pill {
+    font-size: 0.7rem;
+    padding: 6px 8px;
+  }
+  .stat-pill strong {
+    font-size: 1rem;
+  }
+  .bulk-actions {
+    flex-direction: column;
+  }
+  .task-header {
+    flex-direction: column;
+  }
+  .task-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
 }
