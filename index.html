@@ -20,10 +20,11 @@
     <div class="stat-pill"><strong id="stat-total">0</strong>Total</div>
     <div class="stat-pill"><strong id="stat-done">0</strong>Done</div>
     <div class="stat-pill"><strong id="stat-high">0</strong>High Priority</div>
+    <div class="stat-pill"><strong id="stat-overdue">0</strong>Overdue</div>
   </div>
 
   <!-- Add Task Button -->
-  <button id="open-form-btn">＋ Add New Task</button>
+  <button id="open-form-btn">＋ Add New Task <span style="font-size: 0.7rem;">(N)</span></button>
 
   <!-- Task Form -->
   <div class="task-form" id="task-form">
@@ -48,7 +49,7 @@
       <textarea id="desc-input" placeholder="Optional details..."></textarea>
     </div>
     <div class="form-actions">
-      <button class="btn-ghost" id="cancel-form-btn">Cancel</button>
+      <button class="btn-ghost" id="cancel-form-btn">Cancel (Esc)</button>
       <button class="btn-primary" id="submit-btn">Add Task</button>
     </div>
   </div>
@@ -59,6 +60,18 @@
     <button class="filter-btn" data-filter="active">Active</button>
     <button class="filter-btn" data-filter="done">Done</button>
     <button class="filter-btn" data-filter="high">🔴 High</button>
+    <button class="filter-btn" data-filter="overdue">⚠️ Overdue</button>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-bar">
+    <input type="text" id="search-input" placeholder="🔍 Search tasks by title or description..." />
+  </div>
+
+  <!-- Bulk Actions -->
+  <div class="bulk-actions">
+    <button id="mark-all-done" class="bulk-btn">✅ Mark All Active as Done</button>
+    <button id="clear-all-done" class="bulk-btn">🗑️ Clear Completed</button>
   </div>
 
   <!-- Tasks List -->
@@ -74,6 +87,12 @@
     <button id="dialog-confirm">Delete</button>
   </div>
 </dialog>
+
+<!-- Undo Snackbar -->
+<div id="undo-snackbar" class="snackbar">
+  <span>Task deleted</span>
+  <button id="undo-delete">Undo</button>
+</div>
 
 <script src="script.js"></script>
 </body>
