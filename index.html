@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Task Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <h1>My <span>Tasks</span></h1>
+  <p>Stay organized. Stay productive.</p>
+</header>
+
+<div class="app">
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat-pill"><strong id="stat-total">0</strong>Total</div>
+    <div class="stat-pill"><strong id="stat-done">0</strong>Done</div>
+    <div class="stat-pill"><strong id="stat-high">0</strong>High Priority</div>
+  </div>
+
+  <!-- Add Task Button -->
+  <button id="open-form-btn">＋ Add New Task</button>
+
+  <!-- Task Form -->
+  <div class="task-form" id="task-form">
+    <div class="form-row">
+      <label for="title-input">Task Title *</label>
+      <input id="title-input" type="text" placeholder="What needs to be done?" />
+    </div>
+    <div class="form-row">
+      <label for="date-input">Due Date</label>
+      <input id="date-input" type="date" />
+    </div>
+    <div class="form-row">
+      <label>Priority</label>
+      <div class="priority-btns">
+        <button type="button" class="priority-btn active-low" data-p="low">🟢 Low</button>
+        <button type="button" class="priority-btn" data-p="med">🟡 Medium</button>
+        <button type="button" class="priority-btn" data-p="high">🔴 High</button>
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="desc-input">Description</label>
+      <textarea id="desc-input" placeholder="Optional details..."></textarea>
+    </div>
+    <div class="form-actions">
+      <button class="btn-ghost" id="cancel-form-btn">Cancel</button>
+      <button class="btn-primary" id="submit-btn">Add Task</button>
+    </div>
+  </div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="active">Active</button>
+    <button class="filter-btn" data-filter="done">Done</button>
+    <button class="filter-btn" data-filter="high">🔴 High</button>
+  </div>
+
+  <!-- Tasks List -->
+  <div id="tasks-list"></div>
+
+</div>
+
+<!-- Confirm Delete Dialog -->
+<dialog id="confirm-dialog">
+  <p>Delete this task permanently?</p>
+  <div class="dialog-actions">
+    <button id="dialog-cancel">Cancel</button>
+    <button id="dialog-confirm">Delete</button>
+  </div>
+</dialog>
+
+<script src="script.js"></script>
+</body>
+</html>
